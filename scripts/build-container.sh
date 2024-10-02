@@ -58,7 +58,7 @@ build_image()
 	fi
 	# shellcheck disable=SC2086
 	if ! docker buildx build --build-arg SOURCE_DATE_EPOCH="$(git log -1 --pretty=%ct)" \
-			--output type=docker,rewrite-timestamp=true \
+			--output type=docker \
 			--tag "$IMAGE_NAME" --build-arg DEBIAN_TAG="$DEBIAN_TAG" \
 			--target "$1" $PLATFORM_OPT $NOCHACHE_OPT .; then
 		echo "Build failed!"
